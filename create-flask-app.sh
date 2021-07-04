@@ -62,3 +62,6 @@ cd "../"
 
 
 echo "${appName} build completed"
+
+
+
