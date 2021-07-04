@@ -1,2 +1,3 @@
 # create-flask-app
-Shell script for creating a working template for a flask project.
+Shell script for creating a ready-to-go template for you flask project.
+
