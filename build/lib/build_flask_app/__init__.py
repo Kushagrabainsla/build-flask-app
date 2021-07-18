@@ -5,8 +5,25 @@ def main():
     questions = [
         {
             'type': 'input',
-            'name': 'first_name',
-            'message': 'What\'s your first name',
+            'name': 'appName',
+            'message': 'What is your app name?',
+        },
+        {
+            'type': 'checkbox',
+            'name': 'views',
+            'qmark': '😃',
+            'message': 'Select Routes',
+            'choices': [
+                {
+                'name': 'Auth'
+                },
+                {
+                'name': 'Blog'
+                },
+                {
+                'name': 'Profile'
+                }
+            ]
         }
     ]
 
