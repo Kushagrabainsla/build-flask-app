@@ -10,6 +10,6 @@ setup(
     url="https://github.com/Kushagrabainsla/create-flask-app",
     install_requires=['PyInquirer'],
     entry_points = {
-        'console_scripts': ['build-flask-app=build_flask_app.__init__:main'],
+        'console_scripts': ['build-flask-app=build_flask_app.main:main'],
     },
 )
