@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='build-flask-app',
     packages=find_packages(),
-    version='0.0.5',
+    version='0.0.6',
     license='MIT',
     author='Kushagra Bainsla',
     author_email='kushagrabainsla@gmail.com',
