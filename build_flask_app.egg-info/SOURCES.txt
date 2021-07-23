@@ -1,5 +1,6 @@
 LICENSE
 README.md
+setup.cfg
 setup.py
 build_flask_app/Components.py
 build_flask_app/__init__.py
