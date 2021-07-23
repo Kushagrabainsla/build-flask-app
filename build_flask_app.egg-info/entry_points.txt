@@ -1,0 +1,3 @@
+[console_scripts]
+build-flask-app = build_flask_app.main:main
+
