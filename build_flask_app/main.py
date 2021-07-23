@@ -5,5 +5,5 @@ def main():
     if len(sys.argv) == 1: return StartProcess()
     for arg in sys.argv:
         if arg == '-v' or arg == '--version':
-            print('Version 0.0.1')
+            print('Version 0.0.5')
     
