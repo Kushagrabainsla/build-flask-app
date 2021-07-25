@@ -2,9 +2,15 @@
 
 > Set up a modern flask web server by running one command.
 
+
 ## Installing / Getting started
+
+```
+pip install -i https://test.pypi.org/simple/ build-flask-app
+```
+
+## Usage
 
 ```
 build-flask-app
 ```
-
