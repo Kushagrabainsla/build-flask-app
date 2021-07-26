@@ -214,8 +214,8 @@ setup(
     os.mkdir(flaskr)
 
 
-    # flaskrItems = ['__init__.py', 'Views', 'Templates', 'Static']
-    flaskrItems = ['__init__.py', 'views.py', 'Templates', 'Static']
+    
+    flaskrItems = ['__init__.py', 'Views', 'Templates', 'Static']
 
     for item in flaskrItems:
         if item == '__init__.py':
@@ -225,37 +225,72 @@ setup(
     from flask import Flask
     app = Flask(__name__)
 
-    import flaskr.views
+    from .Views import *
                 ''')
-        elif item == 'views.py':
-            filePath = os.path.join(flaskr, item)
+        elif item == 'Views':
+            views = os.path.join(flaskr, item)
+            os.mkdir(views)
+            filePath = os.path.join(views, '__init__.py')
+            with open(filePath, 'w') as fp:
+                fp.write('''
+    from .demoApi1 import *
+    from .demoApi2 import *
+    ''')
+
+            filePath = os.path.join(views, 'demoApi1.py')
             with open(filePath, 'w') as fp:
                 fp.write('''
     from flaskr import app
 
     @app.route('/')
-    def index():
-        return 'Hello World!'
-                ''')
-        # elif item == 'Views':
-            # views = os.path.join(flaskr, item)
-            # os.mkdir(views)
+    def home():
+        return 'Home !!'
+                
+    @app.route('/demoApi1')
+    def demoApi1():
+        return 'DEMO API 1 IS WORKING !!'
+    ''')
 
-            # Creating Selected Views in the Views folder.
-            # for service in answers['views']:
-            # 	path = os.path.join(views, service)
-            # 	os.mkdir(path)
-            # 	filePath = os.path.join(path, service + '.py')
-            # 	with open(filePath, 'w') as fp:
-            # 		fp.write(service)
+            filePath = os.path.join(views, 'demoApi2.py')
+            with open(filePath, 'w') as fp:
+                fp.write('''
+    from flaskr import app
+
+    @app.route('/demoApi2')
+    def demoApi2():
+        return 'DEMO API 2 IS WORKING !!'
+    ''')
+
+
         elif item == 'Templates':
             templates = os.path.join(flaskr, item)
             os.mkdir(templates)
 
-            for item in ['base.html', 'error.html']:
-                filePath = os.path.join(templates, item)
-                with open(filePath, 'w') as fp:
-                    fp.write(item)
+            filePath = os.path.join(templates, 'base.html')
+            with open(filePath, 'w') as fp:
+                fp.write('''	
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8" name="viewport" content="initial-scale=1, width=device-width">
+            <title> APP TITLE</title>
+        </head>
+        <body>
+            {% block body %} {% endblock %}
+        </body>
+    </html>
+    ''')
+            filePath = os.path.join(templates, 'error.html')
+            with open(filePath, 'w') as fp:
+                fp.write('''
+    {% extends "base.html" %}
+    {% block body %}
+
+        <h2>Error Page</h2>
+
+    {% endblock %}
+    ''')
+
         elif item == 'Static':
             static = os.path.join(flaskr, item)
             os.mkdir(static)
@@ -270,6 +305,3 @@ setup(
         filePath = os.path.join(tests, item)
         with open(filePath, 'w') as fp:
             fp.write(item)
-
-
-
