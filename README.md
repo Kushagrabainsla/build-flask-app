@@ -21,6 +21,15 @@ build-flask-app
 cd flaskr
 export FLASK_APP=flaskr
 export FLASK_ENV=development
+flask run
+```
+
+## Running The Application (as a Python Package)
+
+```
+cd flaskr
+export FLASK_APP=flaskr
+export FLASK_ENV=development
 pip install -e .
 flask run
 ```
