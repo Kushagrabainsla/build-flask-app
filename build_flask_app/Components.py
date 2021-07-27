@@ -12,184 +12,287 @@ def StartProcess():
     # ]
 
     # answers = prompt(questions)
-    gitignoreFileData = '''
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+    readmeFileContent = '''
+    <img src="./images/logo.sample.png" alt="Logo of the project" align="right">
 
-# C extensions
-*.so
+    # Name of the project &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
+    > Additional information or tag line
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+    A brief description of your project, what it is used for.
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+    ## Installing / Getting started
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+    A quick introduction of the minimal setup you need to get a hello world up &
+    running.
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-cover/
+    ```shell
+    commands here
+    ```
 
-# Translations
-*.mo
-*.pot
+    Here you should say what actually happens when you execute the code above.
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+    ## Developing
 
-# Flask stuff:
-instance/
-.webassets-cache
+    ### Built With
+    List main libraries, frameworks used including versions (flask, etc ...)
 
-# Scrapy stuff:
-.scrapy
+    ### Prerequisites
+    What is needed to set up the dev environment. For instance, global dependencies or any other tools. include download links.
 
-# Sphinx documentation
-docs/_build/
 
-# PyBuilder
-.pybuilder/
-target/
+    ### Setting up Dev
 
-# Jupyter Notebook
-.ipynb_checkpoints
+    Here's a brief intro about what a developer must do in order to start developing
+    the project further:
 
-# IPython
-profile_default/
-ipython_config.py
+    ```shell
+    git clone https://github.com/your/your-project.git
+    cd your-project/
+    packagemanager install
+    ```
 
-# pyenv
-#   For a library or package, you might want to ignore these files since the code is
-#   intended to run in multiple environments; otherwise, check them in:
-# .python-version
+    And state what happens step-by-step. If there is any virtual environment, local server or database feeder needed, explain here.
 
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
+    ### Building
 
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
+    If your project needs some additional steps for the developer to build the
+    project after some code changes, state them here. for example:
 
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
+    ```shell
+    ./configure
+    make
+    make install
+    ```
 
-# SageMath parsed files
-*.sage.py
+    Here again you should state what actually happens when the code above gets
+    executed.
 
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
+    ### Deploying / Publishing
+    give instructions on how to build and release a new version
+    In case there's some step you have to take that publishes this project to a
+    server, this is the right time to state it.
 
-# Spyder project settings
-.spyderproject
-.spyproject
+    ```shell
+    packagemanager deploy your-project -s server.com -u username -p password
+    ```
 
-# Rope project settings
-.ropeproject
+    And again you'd need to tell what the previous code actually does.
 
-# mkdocs documentation
-/site
+    ## Versioning
 
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
+    We can maybe use [SemVer](http://semver.org/) for versioning.
 
-# Pyre type checker
-.pyre/
 
-# pytype static type analyzer
-.pytype/
+    ## Configuration
 
-# Cython debug symbols
-cython_debug/
-'''
+    Here you should write what are all of the configurations a user can enter when using the project.
 
-    licenseFileData = ''' 
-MIT License
+    ## Tests
 
-Copyright (c) 2021 flaskr
+    Describe and show how to run the tests with code examples.
+    Explain what these tests test and why.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+    ```shell
+    Give an example
+    ```
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+    ## Style guide
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-'''
+    Explain your code style and show how to check it.
 
-    setupPyFileData='''
-from setuptools import setup
+    ## Api Reference
 
-setup(
-    name='flaskr',
-    packages=['flaskr'],
-    include_package_data=True,
-    install_requires=[
-        'flask',
-    ],
-)
-'''
-    
+    If the api is external, link to api documentation. If not describe your api including authentication methods as well as explaining all the endpoints with their required parameters.
+
+
+    ## Database
+
+    Explaining what database (and version) has been used. Provide download links.
+    Documents your database design and schemas, relations etc... 
+
+    ## Licensing
+
+    State what the license is and how to find the text version of the license.
+    '''
+
+    gitignoreFileContent = '''
+    # Byte-compiled / optimized / DLL files
+    __pycache__/
+    *.py[cod]
+    *$py.class
+
+    # C extensions
+    *.so
+
+    # Distribution / packaging
+    .Python
+    build/
+    develop-eggs/
+    dist/
+    downloads/
+    eggs/
+    .eggs/
+    lib/
+    lib64/
+    parts/
+    sdist/
+    var/
+    wheels/
+    share/python-wheels/
+    *.egg-info/
+    .installed.cfg
+    *.egg
+    MANIFEST
+
+    # PyInstaller
+    #  Usually these files are written by a python script from a template
+    #  before PyInstaller builds the exe, so as to inject date/other infos into it.
+    *.manifest
+    *.spec
+
+    # Installer logs
+    pip-log.txt
+    pip-delete-this-directory.txt
+
+    # Unit test / coverage reports
+    htmlcov/
+    .tox/
+    .nox/
+    .coverage
+    .coverage.*
+    .cache
+    nosetests.xml
+    coverage.xml
+    *.cover
+    *.py,cover
+    .hypothesis/
+    .pytest_cache/
+    cover/
+
+    # Translations
+    *.mo
+    *.pot
+
+    # Django stuff:
+    *.log
+    local_settings.py
+    db.sqlite3
+    db.sqlite3-journal
+
+    # Flask stuff:
+    instance/
+    .webassets-cache
+
+    # Scrapy stuff:
+    .scrapy
+
+    # Sphinx documentation
+    docs/_build/
+
+    # PyBuilder
+    .pybuilder/
+    target/
+
+    # Jupyter Notebook
+    .ipynb_checkpoints
+
+    # IPython
+    profile_default/
+    ipython_config.py
+
+    # pyenv
+    #   For a library or package, you might want to ignore these files since the code is
+    #   intended to run in multiple environments; otherwise, check them in:
+    # .python-version
+
+    # pipenv
+    #   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+    #   However, in case of collaboration, if having platform-specific dependencies or dependencies
+    #   having no cross-platform support, pipenv may install dependencies that don't work, or not
+    #   install all needed dependencies.
+    #Pipfile.lock
+
+    # PEP 582; used by e.g. github.com/David-OConnor/pyflow
+    __pypackages__/
+
+    # Celery stuff
+    celerybeat-schedule
+    celerybeat.pid
+
+    # SageMath parsed files
+    *.sage.py
+
+    # Environments
+    .env
+    .venv
+    env/
+    venv/
+    ENV/
+    env.bak/
+    venv.bak/
+
+    # Spyder project settings
+    .spyderproject
+    .spyproject
+
+    # Rope project settings
+    .ropeproject
+
+    # mkdocs documentation
+    /site
+
+    # mypy
+    .mypy_cache/
+    .dmypy.json
+    dmypy.json
+
+    # Pyre type checker
+    .pyre/
+
+    # pytype static type analyzer
+    .pytype/
+
+    # Cython debug symbols
+    cython_debug/
+    '''
+
+    licenseFileContent = ''' 
+    MIT License
+
+    Copyright (c) 2021 flaskr
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+    '''
+
+    setupPyFileContent = '''
+    from setuptools import setup
+
+    setup(
+        name='flaskr',
+        packages=['flaskr'],
+        include_package_data=True,
+        install_requires=[
+            'flask',
+        ],
+    )
+    '''
+
     parent_dir = "./"
 
     path = os.path.join(parent_dir, 'flaskr')
@@ -203,19 +306,18 @@ setup(
     for item in essentials:
         filePath = os.path.join(app, item)
         with open(filePath, 'w') as fp:
-            if item == 'LICENSE': fp.write(licenseFileData)
-            if item == 'README.md': fp.write('readme is prited')
-            if item == 'requirements.txt': fp.write('requirement is prited')
-            if item == '.gitignore': fp.write(gitignoreFileData)
-            if item == 'setup.py': fp.write(setupPyFileData)
+            if item == 'LICENSE': fp.write(licenseFileContent)
+            if item == 'README.md': fp.write(readmeFileContent)
+            if item == 'requirements.txt': fp.write('All the requirements for your package')
+            if item == '.gitignore': fp.write(gitignoreFileContent)
+            if item == 'setup.py': fp.write(setupPyFileContent)
 
     # Main server Directory
     flaskr = os.path.join(app, 'flaskr')
     os.mkdir(flaskr)
 
 
-    
-    flaskrItems = ['__init__.py', 'Views', 'Templates', 'Static']
+    flaskrItems = ['__init__.py', 'views', 'templates', 'static']
 
     for item in flaskrItems:
         if item == '__init__.py':
@@ -225,44 +327,55 @@ setup(
     from flask import Flask
     app = Flask(__name__)
 
-    from .Views import *
+    from .views import *
                 ''')
-        elif item == 'Views':
-            views = os.path.join(flaskr, item)
-            os.mkdir(views)
-            filePath = os.path.join(views, '__init__.py')
-            with open(filePath, 'w') as fp:
-                fp.write('''
+        elif item == 'views':
+                views = os.path.join(flaskr, item)
+                os.mkdir(views)
+                filePath = os.path.join(views, '__init__.py')
+                with open(filePath, 'w') as fp:
+                    fp.write('''
+    from .home import *
     from .demoApi1 import *
     from .demoApi2 import *
-    ''')
+        ''')
 
-            filePath = os.path.join(views, 'demoApi1.py')
-            with open(filePath, 'w') as fp:
-                fp.write('''
+                filePath = os.path.join(views, 'demoApi1.py')
+                with open(filePath, 'w') as fp:
+                    fp.write('''
     from flaskr import app
-
-    @app.route('/')
-    def home():
-        return 'Home !!'
                 
     @app.route('/demoApi1')
     def demoApi1():
         return 'DEMO API 1 IS WORKING !!'
-    ''')
+        ''')
 
-            filePath = os.path.join(views, 'demoApi2.py')
-            with open(filePath, 'w') as fp:
-                fp.write('''
+                filePath = os.path.join(views, 'demoApi2.py')
+                with open(filePath, 'w') as fp:
+                    fp.write('''
     from flaskr import app
 
     @app.route('/demoApi2')
     def demoApi2():
         return 'DEMO API 2 IS WORKING !!'
-    ''')
+        ''')
+                filePath = os.path.join(views, 'home.py')
+                with open(filePath, 'w') as fp:
+                    fp.write('''
+    from flaskr import app
+    from flask import render_template
+
+    @app.route('/')
+    def home():
+        return render_template('home.html')
+
+    @app.route('/error')
+    def error():
+        return render_template('error.html')
+        ''')
 
 
-        elif item == 'Templates':
+        elif item == 'templates':
             templates = os.path.join(flaskr, item)
             os.mkdir(templates)
 
@@ -273,13 +386,25 @@ setup(
     <html lang="en">
         <head>
             <meta charset="utf-8" name="viewport" content="initial-scale=1, width=device-width">
-            <title> APP TITLE</title>
+            <title>flaskr</title>
+            <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
         </head>
-        <body>
+        <body class="container">
             {% block body %} {% endblock %}
         </body>
     </html>
     ''')
+            filePath = os.path.join(templates, 'home.html')
+            with open(filePath, 'w') as fp:
+                fp.write('''
+    {% extends "base.html" %}
+    {% block body %}
+        
+        <h2>Home Page</h2>
+
+    {% endblock %}
+    ''')
+
             filePath = os.path.join(templates, 'error.html')
             with open(filePath, 'w') as fp:
                 fp.write('''
@@ -291,17 +416,31 @@ setup(
     {% endblock %}
     ''')
 
-        elif item == 'Static':
+        elif item == 'static':
             static = os.path.join(flaskr, item)
             os.mkdir(static)
+
+            filePath = os.path.join(static, 'styles.css')
+            with open(filePath, 'w') as fp:
+                fp.write('''
+    .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+                ''')
+
 
     # Server Tests Directory
     tests = os.path.join(app, 'tests')
     os.mkdir(tests)
 
-    testItems = ['TestAuth.py', 'TestBlog.py', 'TestDb.py']
+    testItems = ['testAuth.py', 'testBlog.py', 'testDb.py']
 
     for item in testItems:
         filePath = os.path.join(tests, item)
         with open(filePath, 'w') as fp:
             fp.write(item)
+
