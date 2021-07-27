@@ -13,284 +13,284 @@ def StartProcess():
 
     # answers = prompt(questions)
     readmeFileContent = '''
-    <img src="./images/logo.sample.png" alt="Logo of the project" align="right">
+<img src="./images/logo.sample.png" alt="Logo of the project" align="right">
 
-    # Name of the project &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
-    > Additional information or tag line
+# Name of the project &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
+> Additional information or tag line
 
-    A brief description of your project, what it is used for.
+A brief description of your project, what it is used for.
 
-    ## Installing / Getting started
+## Installing / Getting started
 
-    A quick introduction of the minimal setup you need to get a hello world up &
-    running.
+A quick introduction of the minimal setup you need to get a hello world up &
+running.
 
-    ```shell
-    commands here
-    ```
+```shell
+commands here
+```
 
-    Here you should say what actually happens when you execute the code above.
+Here you should say what actually happens when you execute the code above.
 
-    ## Developing
+## Developing
 
-    ### Built With
-    List main libraries, frameworks used including versions (flask, etc ...)
+### Built With
+List main libraries, frameworks used including versions (flask, etc ...)
 
-    ### Prerequisites
-    What is needed to set up the dev environment. For instance, global dependencies or any other tools. include download links.
-
-
-    ### Setting up Dev
-
-    Here's a brief intro about what a developer must do in order to start developing
-    the project further:
-
-    ```shell
-    git clone https://github.com/your/your-project.git
-    cd your-project/
-    packagemanager install
-    ```
-
-    And state what happens step-by-step. If there is any virtual environment, local server or database feeder needed, explain here.
-
-    ### Building
-
-    If your project needs some additional steps for the developer to build the
-    project after some code changes, state them here. for example:
-
-    ```shell
-    ./configure
-    make
-    make install
-    ```
-
-    Here again you should state what actually happens when the code above gets
-    executed.
-
-    ### Deploying / Publishing
-    give instructions on how to build and release a new version
-    In case there's some step you have to take that publishes this project to a
-    server, this is the right time to state it.
-
-    ```shell
-    packagemanager deploy your-project -s server.com -u username -p password
-    ```
-
-    And again you'd need to tell what the previous code actually does.
-
-    ## Versioning
-
-    We can maybe use [SemVer](http://semver.org/) for versioning.
+### Prerequisites
+What is needed to set up the dev environment. For instance, global dependencies or any other tools. include download links.
 
 
-    ## Configuration
+### Setting up Dev
 
-    Here you should write what are all of the configurations a user can enter when using the project.
+Here's a brief intro about what a developer must do in order to start developing
+the project further:
 
-    ## Tests
+```shell
+git clone https://github.com/your/your-project.git
+cd your-project/
+packagemanager install
+```
 
-    Describe and show how to run the tests with code examples.
-    Explain what these tests test and why.
+And state what happens step-by-step. If there is any virtual environment, local server or database feeder needed, explain here.
 
-    ```shell
-    Give an example
-    ```
+### Building
 
-    ## Style guide
+If your project needs some additional steps for the developer to build the
+project after some code changes, state them here. for example:
 
-    Explain your code style and show how to check it.
+```shell
+./configure
+make
+make install
+```
 
-    ## Api Reference
+Here again you should state what actually happens when the code above gets
+executed.
 
-    If the api is external, link to api documentation. If not describe your api including authentication methods as well as explaining all the endpoints with their required parameters.
+### Deploying / Publishing
+give instructions on how to build and release a new version
+In case there's some step you have to take that publishes this project to a
+server, this is the right time to state it.
+
+```shell
+packagemanager deploy your-project -s server.com -u username -p password
+```
+
+And again you'd need to tell what the previous code actually does.
+
+## Versioning
+
+We can maybe use [SemVer](http://semver.org/) for versioning.
 
 
-    ## Database
+## Configuration
 
-    Explaining what database (and version) has been used. Provide download links.
-    Documents your database design and schemas, relations etc... 
+Here you should write what are all of the configurations a user can enter when using the project.
 
-    ## Licensing
+## Tests
 
-    State what the license is and how to find the text version of the license.
+Describe and show how to run the tests with code examples.
+Explain what these tests test and why.
+
+```shell
+Give an example
+```
+
+## Style guide
+
+Explain your code style and show how to check it.
+
+## Api Reference
+
+If the api is external, link to api documentation. If not describe your api including authentication methods as well as explaining all the endpoints with their required parameters.
+
+
+## Database
+
+Explaining what database (and version) has been used. Provide download links.
+Documents your database design and schemas, relations etc... 
+
+## Licensing
+
+State what the license is and how to find the text version of the license.
     '''
 
     gitignoreFileContent = '''
-    # Byte-compiled / optimized / DLL files
-    __pycache__/
-    *.py[cod]
-    *$py.class
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 
-    # C extensions
-    *.so
+# C extensions
+*.so
 
-    # Distribution / packaging
-    .Python
-    build/
-    develop-eggs/
-    dist/
-    downloads/
-    eggs/
-    .eggs/
-    lib/
-    lib64/
-    parts/
-    sdist/
-    var/
-    wheels/
-    share/python-wheels/
-    *.egg-info/
-    .installed.cfg
-    *.egg
-    MANIFEST
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-    # PyInstaller
-    #  Usually these files are written by a python script from a template
-    #  before PyInstaller builds the exe, so as to inject date/other infos into it.
-    *.manifest
-    *.spec
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
 
-    # Installer logs
-    pip-log.txt
-    pip-delete-this-directory.txt
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
 
-    # Unit test / coverage reports
-    htmlcov/
-    .tox/
-    .nox/
-    .coverage
-    .coverage.*
-    .cache
-    nosetests.xml
-    coverage.xml
-    *.cover
-    *.py,cover
-    .hypothesis/
-    .pytest_cache/
-    cover/
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
 
-    # Translations
-    *.mo
-    *.pot
+# Translations
+*.mo
+*.pot
 
-    # Django stuff:
-    *.log
-    local_settings.py
-    db.sqlite3
-    db.sqlite3-journal
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
 
-    # Flask stuff:
-    instance/
-    .webassets-cache
+# Flask stuff:
+instance/
+.webassets-cache
 
-    # Scrapy stuff:
-    .scrapy
+# Scrapy stuff:
+.scrapy
 
-    # Sphinx documentation
-    docs/_build/
+# Sphinx documentation
+docs/_build/
 
-    # PyBuilder
-    .pybuilder/
-    target/
+# PyBuilder
+.pybuilder/
+target/
 
-    # Jupyter Notebook
-    .ipynb_checkpoints
+# Jupyter Notebook
+.ipynb_checkpoints
 
-    # IPython
-    profile_default/
-    ipython_config.py
+# IPython
+profile_default/
+ipython_config.py
 
-    # pyenv
-    #   For a library or package, you might want to ignore these files since the code is
-    #   intended to run in multiple environments; otherwise, check them in:
-    # .python-version
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
 
-    # pipenv
-    #   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-    #   However, in case of collaboration, if having platform-specific dependencies or dependencies
-    #   having no cross-platform support, pipenv may install dependencies that don't work, or not
-    #   install all needed dependencies.
-    #Pipfile.lock
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
 
-    # PEP 582; used by e.g. github.com/David-OConnor/pyflow
-    __pypackages__/
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
 
-    # Celery stuff
-    celerybeat-schedule
-    celerybeat.pid
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
 
-    # SageMath parsed files
-    *.sage.py
+# SageMath parsed files
+*.sage.py
 
-    # Environments
-    .env
-    .venv
-    env/
-    venv/
-    ENV/
-    env.bak/
-    venv.bak/
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-    # Spyder project settings
-    .spyderproject
-    .spyproject
+# Spyder project settings
+.spyderproject
+.spyproject
 
-    # Rope project settings
-    .ropeproject
+# Rope project settings
+.ropeproject
 
-    # mkdocs documentation
-    /site
+# mkdocs documentation
+/site
 
-    # mypy
-    .mypy_cache/
-    .dmypy.json
-    dmypy.json
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
 
-    # Pyre type checker
-    .pyre/
+# Pyre type checker
+.pyre/
 
-    # pytype static type analyzer
-    .pytype/
+# pytype static type analyzer
+.pytype/
 
-    # Cython debug symbols
-    cython_debug/
+# Cython debug symbols
+cython_debug/
     '''
 
     licenseFileContent = ''' 
-    MIT License
+MIT License
 
-    Copyright (c) 2021 flaskr
+Copyright (c) 2021 flaskr
 
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-    The above copyright notice and this permission notice shall be included in all
-    copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
     '''
 
     setupPyFileContent = '''
-    from setuptools import setup
+from setuptools import setup
 
-    setup(
-        name='flaskr',
-        packages=['flaskr'],
-        include_package_data=True,
-        install_requires=[
-            'flask',
-        ],
-    )
+setup(
+    name='flaskr',
+    packages=['flaskr'],
+    include_package_data=True,
+    install_requires=[
+        'flask',
+    ],
+)
     '''
 
     parent_dir = "./"
@@ -324,10 +324,10 @@ def StartProcess():
             filePath = os.path.join(flaskr, item)
             with open(filePath, 'w') as fp:
                 fp.write('''
-    from flask import Flask
-    app = Flask(__name__)
+from flask import Flask
+app = Flask(__name__)
 
-    from .views import *
+from .views import *
                 ''')
         elif item == 'views':
                 views = os.path.join(flaskr, item)
@@ -335,43 +335,43 @@ def StartProcess():
                 filePath = os.path.join(views, '__init__.py')
                 with open(filePath, 'w') as fp:
                     fp.write('''
-    from .home import *
-    from .demoApi1 import *
-    from .demoApi2 import *
+from .home import *
+from .demoApi1 import *
+from .demoApi2 import *
         ''')
 
                 filePath = os.path.join(views, 'demoApi1.py')
                 with open(filePath, 'w') as fp:
                     fp.write('''
-    from flaskr import app
-                
-    @app.route('/demoApi1')
-    def demoApi1():
-        return 'DEMO API 1 IS WORKING !!'
+from flaskr import app
+            
+@app.route('/demoApi1')
+def demoApi1():
+    return 'DEMO API 1 IS WORKING !!'
         ''')
 
                 filePath = os.path.join(views, 'demoApi2.py')
                 with open(filePath, 'w') as fp:
                     fp.write('''
-    from flaskr import app
+from flaskr import app
 
-    @app.route('/demoApi2')
-    def demoApi2():
-        return 'DEMO API 2 IS WORKING !!'
+@app.route('/demoApi2')
+def demoApi2():
+    return 'DEMO API 2 IS WORKING !!'
         ''')
                 filePath = os.path.join(views, 'home.py')
                 with open(filePath, 'w') as fp:
                     fp.write('''
-    from flaskr import app
-    from flask import render_template
+from flaskr import app
+from flask import render_template
 
-    @app.route('/')
-    def home():
-        return render_template('home.html')
+@app.route('/')
+def home():
+    return render_template('home.html')
 
-    @app.route('/error')
-    def error():
-        return render_template('error.html')
+@app.route('/error')
+def error():
+    return render_template('error.html')
         ''')
 
 
@@ -382,38 +382,38 @@ def StartProcess():
             filePath = os.path.join(templates, 'base.html')
             with open(filePath, 'w') as fp:
                 fp.write('''	
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="utf-8" name="viewport" content="initial-scale=1, width=device-width">
-            <title>flaskr</title>
-            <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-        </head>
-        <body class="container">
-            {% block body %} {% endblock %}
-        </body>
-    </html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" name="viewport" content="initial-scale=1, width=device-width">
+        <title>flaskr</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body class="container">
+        {% block body %} {% endblock %}
+    </body>
+</html>
     ''')
             filePath = os.path.join(templates, 'home.html')
             with open(filePath, 'w') as fp:
                 fp.write('''
-    {% extends "base.html" %}
-    {% block body %}
-        
-        <h2>Home Page</h2>
+{% extends "base.html" %}
+{% block body %}
+    
+    <h2>Home Page</h2>
 
-    {% endblock %}
+{% endblock %}
     ''')
 
             filePath = os.path.join(templates, 'error.html')
             with open(filePath, 'w') as fp:
                 fp.write('''
-    {% extends "base.html" %}
-    {% block body %}
+{% extends "base.html" %}
+{% block body %}
 
-        <h2>Error Page</h2>
+    <h2>Error Page</h2>
 
-    {% endblock %}
+{% endblock %}
     ''')
 
         elif item == 'static':
@@ -423,13 +423,13 @@ def StartProcess():
             filePath = os.path.join(static, 'styles.css')
             with open(filePath, 'w') as fp:
                 fp.write('''
-    .container {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
                 ''')
 
 
