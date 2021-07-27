@@ -12,7 +12,7 @@ def StartProcess():
     # ]
 
     # answers = prompt(questions)
-    readmeFileContent = '''
+	readmeFileContent = '''
 <img src="./images/logo.sample.png" alt="Logo of the project" align="right">
 
 # Name of the project &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
@@ -113,9 +113,9 @@ Documents your database design and schemas, relations etc...
 ## Licensing
 
 State what the license is and how to find the text version of the license.
-    '''
+'''
 
-    gitignoreFileContent = '''
+	gitignoreFileContent = '''
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -254,9 +254,9 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
-    '''
+'''
 
-    licenseFileContent = ''' 
+	licenseFileContent = ''' 
 MIT License
 
 Copyright (c) 2021 flaskr
@@ -278,9 +278,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-    '''
+'''
 
-    setupPyFileContent = '''
+	setupPyFileContent = '''
 from setuptools import setup
 
 setup(
@@ -291,156 +291,156 @@ setup(
         'flask',
     ],
 )
-    '''
+'''
 
-    parent_dir = "./"
+	parent_dir = "./"
 
-    path = os.path.join(parent_dir, 'flaskr')
-    os.mkdir(path)
+	path = os.path.join(parent_dir, 'flaskr')
+	os.mkdir(path)
 
-    # App Directory.
-    app = "./flaskr"
+	# App Directory.
+	app = "./flaskr"
 
-    essentials = ['LICENSE', 'README.md', 'requirements.txt', '.gitignore', 'setup.py']
+	essentials = ['LICENSE', 'README.md', 'requirements.txt', '.gitignore', 'setup.py']
 
-    for item in essentials:
-        filePath = os.path.join(app, item)
-        with open(filePath, 'w') as fp:
-            if item == 'LICENSE': fp.write(licenseFileContent)
-            if item == 'README.md': fp.write(readmeFileContent)
-            if item == 'requirements.txt': fp.write('All the requirements for your package')
-            if item == '.gitignore': fp.write(gitignoreFileContent)
-            if item == 'setup.py': fp.write(setupPyFileContent)
+	for item in essentials:
+		filePath = os.path.join(app, item)
+		with open(filePath, 'w') as fp:
+			if item == 'LICENSE': fp.write(licenseFileContent)
+			if item == 'README.md': fp.write(readmeFileContent)
+			if item == 'requirements.txt': fp.write('All the requirements for your package')
+			if item == '.gitignore': fp.write(gitignoreFileContent)
+			if item == 'setup.py': fp.write(setupPyFileContent)
 
-    # Main server Directory
-    flaskr = os.path.join(app, 'flaskr')
-    os.mkdir(flaskr)
+	# Main server Directory
+	flaskr = os.path.join(app, 'flaskr')
+	os.mkdir(flaskr)
 
 
-    flaskrItems = ['__init__.py', 'views', 'templates', 'static']
+	flaskrItems = ['__init__.py', 'views', 'templates', 'static']
 
-    for item in flaskrItems:
-        if item == '__init__.py':
-            filePath = os.path.join(flaskr, item)
-            with open(filePath, 'w') as fp:
-                fp.write('''
+	for item in flaskrItems:
+		if item == '__init__.py':
+			filePath = os.path.join(flaskr, item)
+			with open(filePath, 'w') as fp:
+				fp.write('''
 from flask import Flask
 app = Flask(__name__)
 
 from .views import *
-                ''')
-        elif item == 'views':
-                views = os.path.join(flaskr, item)
-                os.mkdir(views)
-                filePath = os.path.join(views, '__init__.py')
-                with open(filePath, 'w') as fp:
-                    fp.write('''
+''')
+		elif item == 'views':
+	            views = os.path.join(flaskr, item)
+	            os.mkdir(views)
+	            filePath = os.path.join(views, '__init__.py')
+	            with open(filePath, 'w') as fp:
+	                fp.write('''
 from .home import *
 from .demoApi1 import *
 from .demoApi2 import *
-        ''')
+''')
 
-                filePath = os.path.join(views, 'demoApi1.py')
-                with open(filePath, 'w') as fp:
-                    fp.write('''
+	            filePath = os.path.join(views, 'demoApi1.py')
+	            with open(filePath, 'w') as fp:
+	                fp.write('''
 from flaskr import app
             
 @app.route('/demoApi1')
 def demoApi1():
     return 'DEMO API 1 IS WORKING !!'
-        ''')
+''')
 
-                filePath = os.path.join(views, 'demoApi2.py')
-                with open(filePath, 'w') as fp:
-                    fp.write('''
+	            filePath = os.path.join(views, 'demoApi2.py')
+	            with open(filePath, 'w') as fp:
+	                fp.write('''
 from flaskr import app
 
 @app.route('/demoApi2')
 def demoApi2():
     return 'DEMO API 2 IS WORKING !!'
-        ''')
-                filePath = os.path.join(views, 'home.py')
-                with open(filePath, 'w') as fp:
-                    fp.write('''
+''')
+	            filePath = os.path.join(views, 'home.py')
+	            with open(filePath, 'w') as fp:
+	                fp.write('''
 from flaskr import app
 from flask import render_template
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+	return render_template('home.html')
 
 @app.route('/error')
 def error():
-    return render_template('error.html')
-        ''')
+	return render_template('error.html')
+''')
 
 
-        elif item == 'templates':
-            templates = os.path.join(flaskr, item)
-            os.mkdir(templates)
+		elif item == 'templates':
+			templates = os.path.join(flaskr, item)
+			os.mkdir(templates)
 
-            filePath = os.path.join(templates, 'base.html')
-            with open(filePath, 'w') as fp:
-                fp.write('''	
+			filePath = os.path.join(templates, 'base.html')
+			with open(filePath, 'w') as fp:
+				fp.write('''	
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" name="viewport" content="initial-scale=1, width=device-width">
-        <title>flaskr</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    </head>
-    <body class="container">
-        {% block body %} {% endblock %}
-    </body>
+	<head>
+		<meta charset="utf-8" name="viewport" content="initial-scale=1, width=device-width">
+		<title>flaskr</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+	<body class="container">
+		{% block body %} {% endblock %}
+	</body>
 </html>
-    ''')
-            filePath = os.path.join(templates, 'home.html')
-            with open(filePath, 'w') as fp:
-                fp.write('''
+''')
+			filePath = os.path.join(templates, 'home.html')
+			with open(filePath, 'w') as fp:
+				fp.write('''
 {% extends "base.html" %}
 {% block body %}
-    
-    <h2>Home Page</h2>
+	
+	<h2>Home Page</h2>
 
 {% endblock %}
-    ''')
+''')
 
-            filePath = os.path.join(templates, 'error.html')
-            with open(filePath, 'w') as fp:
-                fp.write('''
+			filePath = os.path.join(templates, 'error.html')
+			with open(filePath, 'w') as fp:
+				fp.write('''
 {% extends "base.html" %}
 {% block body %}
 
-    <h2>Error Page</h2>
+	<h2>Error Page</h2>
 
 {% endblock %}
-    ''')
+''')
 
-        elif item == 'static':
-            static = os.path.join(flaskr, item)
-            os.mkdir(static)
+		elif item == 'static':
+			static = os.path.join(flaskr, item)
+			os.mkdir(static)
 
-            filePath = os.path.join(static, 'styles.css')
-            with open(filePath, 'w') as fp:
-                fp.write('''
+			filePath = os.path.join(static, 'styles.css')
+			with open(filePath, 'w') as fp:
+				fp.write('''
 .container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-                ''')
+''')
 
 
-    # Server Tests Directory
-    tests = os.path.join(app, 'tests')
-    os.mkdir(tests)
+	# Server Tests Directory
+	tests = os.path.join(app, 'tests')
+	os.mkdir(tests)
 
-    testItems = ['testAuth.py', 'testBlog.py', 'testDb.py']
+	testItems = ['testAuth.py', 'testBlog.py', 'testDb.py']
 
-    for item in testItems:
-        filePath = os.path.join(tests, item)
-        with open(filePath, 'w') as fp:
-            fp.write(item)
+	for item in testItems:
+		filePath = os.path.join(tests, item)
+		with open(filePath, 'w') as fp:
+			fp.write(item)
 
