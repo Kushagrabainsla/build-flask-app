@@ -12,6 +12,7 @@ def StartProcess():
     # ]
 
     # answers = prompt(questions)
+
 	readmeFileContent = '''
 <img src="./images/logo.sample.png" alt="Logo of the project" align="right">
 
@@ -387,6 +388,8 @@ def error():
 	<head>
 		<meta charset="utf-8" name="viewport" content="initial-scale=1, width=device-width">
 		<title>flaskr</title>
+		<link rel="shortcut icon" href="https://raw.githubusercontent.com/Kushagrabainsla/build-flask-app/main/assets/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="https://raw.githubusercontent.com/Kushagrabainsla/build-flask-app/main/assets/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 	</head>
 	<body class="container">
@@ -400,7 +403,7 @@ def error():
 {% extends "base.html" %}
 {% block body %}
 	
-	<h2>Home Page</h2>
+	<img src="https://github.com/Kushagrabainsla/build-flask-app/blob/main/assets/buildFlaskAppLogo.png?raw=true">
 
 {% endblock %}
 ''')
@@ -412,6 +415,7 @@ def error():
 {% block body %}
 
 	<h2>Error Page</h2>
+	<h3> ( Adjust the error.html page for this page's look ! ) </h3>
 
 {% endblock %}
 ''')
@@ -443,4 +447,3 @@ def error():
 		filePath = os.path.join(tests, item)
 		with open(filePath, 'w') as fp:
 			fp.write(item)
-
