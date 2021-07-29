@@ -1,17 +1,25 @@
 from __future__ import print_function, unicode_literals
 import os
-# from PyInquirer import prompt, print_json
+import subprocess
+from PyInquirer import prompt, print_json
 
 def StartProcess():
-    # questions = [
-    #     {
-    #         'type': 'input',
-    #         'name': 'appName',
-    #         'message': 'What is your application name?',
-    #     },
-    # ]
+	questions = [
+		{
+			'type': 'input',
+			'name': 'appName',
+			'message': 'What is your application name?',
+	},
+		{
+			'type': 'confirm',
+			'name': 'isGitInit',
+			'message': 'Do you want to initialize a local git repository?',
+		}
+	]
 
-    # answers = prompt(questions)
+	answers = prompt(questions)
+
+	print('Building ', answers['appName'])
 
 	readmeFileContent = '''
 <img src="./images/logo.sample.png" alt="Logo of the project" align="right">
@@ -302,9 +310,11 @@ setup(
 	# App Directory.
 	app = "./flaskr"
 
-	essentials = ['LICENSE', 'README.md', 'requirements.txt', '.gitignore', 'setup.py']
+	essentials = ['LICENSE', 'README.md', 'requirements.txt', 'gitInit', '.gitignore', 'setup.py']
 
 	for item in essentials:
+		if item == 'gitInit' and answers['isGitInit']:
+			subprocess.Popen(["git","init"], cwd = './flaskr')
 		filePath = os.path.join(app, item)
 		with open(filePath, 'w') as fp:
 			if item == 'LICENSE': fp.write(licenseFileContent)
