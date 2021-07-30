@@ -21,8 +21,8 @@ build-flask-app
 ## Running The Application
 
 ```
-cd flaskr
-export FLASK_APP=flaskr
+cd YOUR_APP_NAME
+export FLASK_APP=YOUR_APP_NAME
 export FLASK_ENV=development
 flask run
 ```
@@ -30,8 +30,8 @@ flask run
 ## Running The Application As Package
 
 ```
-cd flaskr
-export FLASK_APP=flaskr
+cd YOUR_APP_NAME
+export FLASK_APP=YOUR_APP_NAME
 export FLASK_ENV=development
 pip install -e .
 flask run
