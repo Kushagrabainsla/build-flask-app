@@ -1,7 +1,9 @@
-from __future__ import print_function, unicode_literals
 import os
 import subprocess
+# from __future__ import print_function, unicode_literals
 from PyInquirer import prompt, print_json
+from termcolor import colored, cprint
+
 
 def StartProcess():
 	questions = [
@@ -19,7 +21,6 @@ def StartProcess():
 
 	answers = prompt(questions)
 
-	print('Building ', answers['appName'])
 
 	readmeFileContent = '''
 <img src="./images/logo.sample.png" alt="Logo of the project" align="right">
@@ -268,7 +269,7 @@ cython_debug/
 	licenseFileContent = ''' 
 MIT License
 
-Copyright (c) 2021 flaskr
+Copyright (c) 2021 {appName}
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -287,51 +288,61 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-'''
+'''.format(appName=answers['appName'])
 
 	setupPyFileContent = '''
 from setuptools import setup
 
 setup(
-    name='flaskr',
-    packages=['flaskr'],
+    name='{appName}',
+    packages=['{appName}'],
     include_package_data=True,
     install_requires=[
         'flask',
     ],
 )
-'''
+'''.format(appName=answers['appName'])
 
 	parent_dir = "./"
 
-	path = os.path.join(parent_dir, 'flaskr')
+	path = os.path.join(parent_dir, answers['appName'])
 	os.mkdir(path)
 
 	# App Directory.
-	app = "./flaskr"
+	app = "./{appName}".format(appName=answers['appName'])
+	cprint("Initializing {appName}".format(appName=answers['appName']), 'cyan', attrs=['bold'])
+
+
 
 	essentials = ['LICENSE', 'README.md', 'requirements.txt', 'gitInit', '.gitignore', 'setup.py']
 
+	cprint("Writing essential files ...", 'cyan', attrs=['bold'])
+
 	for item in essentials:
 		if item == 'gitInit' and answers['isGitInit']:
-			subprocess.Popen(["git","init"], cwd = './flaskr')
-		filePath = os.path.join(app, item)
-		with open(filePath, 'w') as fp:
-			if item == 'LICENSE': fp.write(licenseFileContent)
-			if item == 'README.md': fp.write(readmeFileContent)
-			if item == 'requirements.txt': fp.write('All the requirements for your package')
-			if item == '.gitignore': fp.write(gitignoreFileContent)
-			if item == 'setup.py': fp.write(setupPyFileContent)
+			subprocess.Popen(["git","init"], cwd = './{appName}'.format(appName=answers['appName']))
+		else:
+			filePath = os.path.join(app, item)
+			with open(filePath, 'w') as fp:
+				if item == 'LICENSE': fp.write(licenseFileContent)
+				if item == 'README.md': fp.write(readmeFileContent)
+				if item == 'requirements.txt': fp.write('All the requirements for your package')
+				if item == '.gitignore': fp.write(gitignoreFileContent)
+				if item == 'setup.py': fp.write(setupPyFileContent)
 
 	# Main server Directory
-	flaskr = os.path.join(app, 'flaskr')
+	flaskr = os.path.join(app, answers['appName'])
 	os.mkdir(flaskr)
+
+
 
 
 	flaskrItems = ['__init__.py', 'views', 'templates', 'static']
 
 	for item in flaskrItems:
 		if item == '__init__.py':
+			cprint("Writing {}".format(item), 'cyan', attrs=['bold'])
+
 			filePath = os.path.join(flaskr, item)
 			with open(filePath, 'w') as fp:
 				fp.write('''
@@ -341,39 +352,41 @@ app = Flask(__name__)
 from .views import *
 ''')
 		elif item == 'views':
-	            views = os.path.join(flaskr, item)
-	            os.mkdir(views)
-	            filePath = os.path.join(views, '__init__.py')
-	            with open(filePath, 'w') as fp:
-	                fp.write('''
+			cprint("Writing {}".format(item), 'cyan', attrs=['bold'])
+			views = os.path.join(flaskr, item)
+			os.mkdir(views)
+			filePath = os.path.join(views, '__init__.py')
+			with open(filePath, 'w') as fp:
+				fp.write('''
 from .home import *
 from .demoApi1 import *
 from .demoApi2 import *
 ''')
 
-	            filePath = os.path.join(views, 'demoApi1.py')
-	            with open(filePath, 'w') as fp:
-	                fp.write('''
-from flaskr import app
+			filePath = os.path.join(views, 'demoApi1.py')
+			with open(filePath, 'w') as fp:
+				fp.write('''
+from {appName} import app
             
 @app.route('/demoApi1')
 def demoApi1():
     return 'DEMO API 1 IS WORKING !!'
-''')
+'''.format(appName=answers['appName']))
 
-	            filePath = os.path.join(views, 'demoApi2.py')
-	            with open(filePath, 'w') as fp:
-	                fp.write('''
-from flaskr import app
+			filePath = os.path.join(views, 'demoApi2.py')
+			with open(filePath, 'w') as fp:
+				fp.write('''
+from {appName} import app
 
 @app.route('/demoApi2')
 def demoApi2():
     return 'DEMO API 2 IS WORKING !!'
-''')
-	            filePath = os.path.join(views, 'home.py')
-	            with open(filePath, 'w') as fp:
-	                fp.write('''
-from flaskr import app
+'''.format(appName=answers['appName']))
+
+			filePath = os.path.join(views, 'home.py')
+			with open(filePath, 'w') as fp:
+				fp.write('''
+from {appName} import app
 from flask import render_template
 
 @app.route('/')
@@ -383,10 +396,11 @@ def home():
 @app.route('/error')
 def error():
 	return render_template('error.html')
-''')
+'''.format(appName=answers['appName']))
 
 
 		elif item == 'templates':
+			cprint("Writing {}".format(item), 'cyan', attrs=['bold'])
 			templates = os.path.join(flaskr, item)
 			os.mkdir(templates)
 
@@ -397,7 +411,7 @@ def error():
 <html lang="en">
 	<head>
 		<meta charset="utf-8" name="viewport" content="initial-scale=1, width=device-width">
-		<title>flaskr</title>
+		<title>Build Flask App</title>
 		<link rel="shortcut icon" href="https://raw.githubusercontent.com/Kushagrabainsla/build-flask-app/main/assets/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="https://raw.githubusercontent.com/Kushagrabainsla/build-flask-app/main/assets/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
@@ -425,7 +439,6 @@ def error():
 {% block body %}
 
 	<h2>Error Page</h2>
-	<h3> ( Adjust the error.html page for this page's look ! ) </h3>
 
 {% endblock %}
 ''')
@@ -441,6 +454,7 @@ def error():
 	width: 100%;
 	height: 100vh;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 }
@@ -452,8 +466,10 @@ def error():
 	os.mkdir(tests)
 
 	testItems = ['testAuth.py', 'testBlog.py', 'testDb.py']
-
+	cprint("Writing Tests", 'cyan', attrs=['bold'])
 	for item in testItems:
 		filePath = os.path.join(tests, item)
 		with open(filePath, 'w') as fp:
-			fp.write(item)
+			service = item[ 4:item.index('.') ]
+			fp.write('# Write you test logic for {service}'.format(service=service))
+
