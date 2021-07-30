@@ -9,7 +9,7 @@
 ## Installing / Getting started
 
 ```
-pip install -i https://test.pypi.org/simple/ build-flask-app
+pip install -i https://test.pypi.org/simple/ build-flask-app==0.0.8
 ```
 
 ## Usage
