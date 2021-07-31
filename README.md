@@ -9,7 +9,7 @@
 ## Installing / Getting started
 
 ```
-pip install build-flask-app==0.0.3
+pip install build-flask-app==0.0.4
 ```
 
 ## Usage
