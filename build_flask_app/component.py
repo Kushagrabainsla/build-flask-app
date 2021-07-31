@@ -1,11 +1,9 @@
 import os
 import subprocess
-# from __future__ import print_function, unicode_literals
 from PyInquirer import prompt, print_json
 from termcolor import colored, cprint
 
-
-def StartProcess():
+def startProcess():
 	questions = [
 		{
 			'type': 'input',
