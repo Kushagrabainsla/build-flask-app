@@ -317,8 +317,10 @@ setup(
 	cprint("Writing essential files ...", 'cyan', attrs=['bold'])
 
 	for item in essentials:
-		if item == 'gitInit' and answers['isGitInit']:
-			subprocess.Popen(["git","init"], cwd = './{appName}'.format(appName=answers['appName']))
+		if item == 'gitInit':
+			if answers['isGitInit']:
+				subprocess.Popen(["git","init"], cwd = './{appName}'.format(appName=answers['appName']))
+			else: continue
 		else:
 			filePath = os.path.join(app, item)
 			with open(filePath, 'w') as fp:
