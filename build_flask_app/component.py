@@ -26,8 +26,7 @@ def startProcess():
 		return 
 
 
-	readmeFileContent = '''
-<img src="./images/logo.sample.png" alt="Logo of the project" align="right">
+	readmeFileContent = '''<img src="./images/logo.sample.png" alt="Logo of the project" align="right">
 
 # Name of the project &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
 > Additional information or tag line
@@ -129,8 +128,7 @@ Documents your database design and schemas, relations etc...
 State what the license is and how to find the text version of the license.
 '''
 
-	gitignoreFileContent = '''
-# Byte-compiled / optimized / DLL files
+	gitignoreFileContent = '''# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -270,8 +268,7 @@ dmypy.json
 cython_debug/
 '''
 
-	licenseFileContent = ''' 
-MIT License
+	licenseFileContent = ''' MIT License
 
 Copyright (c) 2021 {appName}
 
@@ -294,8 +291,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 '''.format(appName=answers['appName'])
 
-	setupPyFileContent = '''
-from setuptools import setup
+	setupPyFileContent = '''from setuptools import setup
 
 setup(
     name='{appName}',
@@ -356,6 +352,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+
 db = 'DB OF YOUR CHOICE'
 
 from .views import *
@@ -378,7 +375,7 @@ from .demoApi2 import *
 @app.route('/demoApi1')
 def demoApi1():
 	print(db)
-    return 'DEMO API 1 IS WORKING !!'
+	return 'DEMO API 1 IS WORKING !!'
 ''')
 
 			filePath = os.path.join(views, 'demoApi2.py')
@@ -388,7 +385,7 @@ def demoApi1():
 @app.route('/demoApi2')
 def demoApi2():
 	print(db)
-    return 'DEMO API 2 IS WORKING !!'
+	return 'DEMO API 2 IS WORKING !!'
 ''')
 
 			filePath = os.path.join(views, 'home.py')
@@ -433,7 +430,7 @@ def error():
 			with open(filePath, 'w') as fp:
 				fp.write('''{% extends "base.html" %}
 {% block body %}
-	
+
 	<img src="https://github.com/Kushagrabainsla/build-flask-app/blob/main/assets/buildFlaskAppLogo.png?raw=true">
 
 {% endblock %}
