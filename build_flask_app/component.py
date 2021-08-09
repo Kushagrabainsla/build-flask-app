@@ -18,6 +18,12 @@ def startProcess():
 	]
 
 	answers = prompt(questions)
+ 
+	# Check for spaces in Application name
+	name = answers['appName'].split(' ')
+	if len(name) > 1: 
+		cprint("No Spaces allowed in application's name !!", 'red', attrs=['bold'])
+		return 
 
 
 	readmeFileContent = '''

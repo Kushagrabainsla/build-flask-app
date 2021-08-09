@@ -1,2 +1,3 @@
 PyInquirer
 termcolor
+flask-cors

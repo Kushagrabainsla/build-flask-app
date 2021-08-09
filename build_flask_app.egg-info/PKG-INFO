@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: build-flask-app
-Version: 0.0.4
+Version: 0.0.5
 Summary: Build Flask App is an excellent open source command-line tool for beginners, which allows you to setup and run modern flask web servers efficiently by running a single command.
 Home-page: https://github.com/Kushagrabainsla/build-flask-app
 Author: Kushagra Bainsla
@@ -8,7 +8,8 @@ Author-email: kushagrabainsla@gmail.com
 License: MIT
 Description: <img src="https://raw.githubusercontent.com/Kushagrabainsla/build-flask-app/main/assets/favicon.ico" alt="Build Flask App Logo" align="right">
         
-        # Build Flask App &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/your/your-project/blob/master/LICENSE)
+        # Build Flask App &middot; 
+        ![Python](https://img.shields.io/badge/Language-Python-blue?style=flat&logo=python) [![PyPI](https://img.shields.io/badge/-PyPI%20Official-green?style=flat&logo=python)](https://pypi.org/project/build-flask-app/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/Kushagrabainsla/build-flask-app/blob/main/LICENSE)
         
         > Set up a modern flask web server by running one command.
         
@@ -17,7 +18,7 @@ Description: <img src="https://raw.githubusercontent.com/Kushagrabainsla/build-f
         ## Installing / Getting started
         
         ```
-        pip install build-flask-app==0.0.4
+        pip install build-flask-app
         ```
         
         ## Usage

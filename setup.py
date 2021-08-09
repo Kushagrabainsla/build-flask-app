@@ -10,7 +10,7 @@ setup(
     long_description=README,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    version='0.0.4',
+    version='0.0.5',
     license='MIT',
     author='Kushagra Bainsla',
     author_email='kushagrabainsla@gmail.com',
