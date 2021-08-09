@@ -1,7 +1,7 @@
 import os
 import subprocess
-from PyInquirer import prompt, print_json
-from termcolor import colored, cprint
+from PyInquirer import prompt
+from termcolor import cprint
 
 def startProcess():
 	questions = [
@@ -345,9 +345,12 @@ setup(
 
 			filePath = os.path.join(flaskr, item)
 			with open(filePath, 'w') as fp:
-				fp.write('''
-from flask import Flask
+				fp.write('''from flask import Flask
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
+db = 'DB OF YOUR CHOICE'
 
 from .views import *
 ''')
@@ -357,46 +360,45 @@ from .views import *
 			os.mkdir(views)
 			filePath = os.path.join(views, '__init__.py')
 			with open(filePath, 'w') as fp:
-				fp.write('''
-from .home import *
+				fp.write('''from .home import *
 from .demoApi1 import *
 from .demoApi2 import *
 ''')
 
 			filePath = os.path.join(views, 'demoApi1.py')
 			with open(filePath, 'w') as fp:
-				fp.write('''
-from {appName} import app
+				fp.write('''from .. import app, db
             
 @app.route('/demoApi1')
 def demoApi1():
+	print(db)
     return 'DEMO API 1 IS WORKING !!'
-'''.format(appName=answers['appName']))
+''')
 
 			filePath = os.path.join(views, 'demoApi2.py')
 			with open(filePath, 'w') as fp:
-				fp.write('''
-from {appName} import app
+				fp.write('''from .. import app, db
 
 @app.route('/demoApi2')
 def demoApi2():
+	print(db)
     return 'DEMO API 2 IS WORKING !!'
-'''.format(appName=answers['appName']))
+''')
 
 			filePath = os.path.join(views, 'home.py')
 			with open(filePath, 'w') as fp:
-				fp.write('''
-from {appName} import app
+				fp.write('''from .. import app, db
 from flask import render_template
 
 @app.route('/')
 def home():
+	print(db)
 	return render_template('home.html')
 
 @app.route('/error')
 def error():
 	return render_template('error.html')
-'''.format(appName=answers['appName']))
+''')
 
 
 		elif item == 'templates':
@@ -406,8 +408,7 @@ def error():
 
 			filePath = os.path.join(templates, 'base.html')
 			with open(filePath, 'w') as fp:
-				fp.write('''	
-<!DOCTYPE html>
+				fp.write('''<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" name="viewport" content="initial-scale=1, width=device-width">
@@ -415,6 +416,7 @@ def error():
 		<link rel="shortcut icon" href="https://raw.githubusercontent.com/Kushagrabainsla/build-flask-app/main/assets/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="https://raw.githubusercontent.com/Kushagrabainsla/build-flask-app/main/assets/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+		<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 	</head>
 	<body class="container">
 		{% block body %} {% endblock %}
@@ -423,8 +425,7 @@ def error():
 ''')
 			filePath = os.path.join(templates, 'home.html')
 			with open(filePath, 'w') as fp:
-				fp.write('''
-{% extends "base.html" %}
+				fp.write('''{% extends "base.html" %}
 {% block body %}
 	
 	<img src="https://github.com/Kushagrabainsla/build-flask-app/blob/main/assets/buildFlaskAppLogo.png?raw=true">
@@ -434,8 +435,7 @@ def error():
 
 			filePath = os.path.join(templates, 'error.html')
 			with open(filePath, 'w') as fp:
-				fp.write('''
-{% extends "base.html" %}
+				fp.write('''{% extends "base.html" %}
 {% block body %}
 
 	<h2>Error Page</h2>
@@ -449,8 +449,7 @@ def error():
 
 			filePath = os.path.join(static, 'styles.css')
 			with open(filePath, 'w') as fp:
-				fp.write('''
-.container {
+				fp.write('''.container {
 	width: 100%;
 	height: 100vh;
 	display: flex;
@@ -465,7 +464,7 @@ def error():
 	tests = os.path.join(app, 'tests')
 	os.mkdir(tests)
 
-	testItems = ['testAuth.py', 'testBlog.py', 'testDb.py']
+	testItems = ['testAuth.py', 'testDb.py']
 	cprint("Writing Tests", 'cyan', attrs=['bold'])
 	for item in testItems:
 		filePath = os.path.join(tests, item)

@@ -17,7 +17,8 @@ setup(
     url='https://github.com/Kushagrabainsla/build-flask-app',
     install_requires=[
         'PyInquirer',
-        'termcolor'
+        'termcolor',
+        'flask-cors'
     ],
     entry_points = {
         'console_scripts': ['build-flask-app=build_flask_app.main:main'],
