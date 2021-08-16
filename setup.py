@@ -21,6 +21,11 @@ setup(
         'termcolor',
         'flask-cors',
     ],
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
     entry_points = {
         'console_scripts': ['build-flask-app=build_flask_app.main:main'],
     },
