@@ -16,9 +16,10 @@ setup(
     author_email='kushagrabainsla@gmail.com',
     url='https://github.com/Kushagrabainsla/build-flask-app',
     install_requires=[
+        'Flask',
         'PyInquirer',
         'termcolor',
-        'flask-cors'
+        'flask-cors',
     ],
     entry_points = {
         'console_scripts': ['build-flask-app=build_flask_app.main:main'],
