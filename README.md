@@ -13,13 +13,13 @@
 
 ## Installing / Getting started
 
-```
+```shell
 pip install build-flask-app
 ```
 
 ## Usage
 
-```
+```shell
 build-flask-app
 ```
 
@@ -27,7 +27,7 @@ build-flask-app
 
 Use **set** instead of **export** while working on windows.
 
-```
+```shell
 cd YOUR_APP_NAME
 export FLASK_APP=YOUR_APP_NAME
 export FLASK_ENV=development
@@ -36,7 +36,9 @@ flask run
 
 ## Running The Application As Package
 
-```
+Use **set** instead of **export** while working on windows.
+
+```shell
 cd YOUR_APP_NAME
 export FLASK_APP=YOUR_APP_NAME
 export FLASK_ENV=development
