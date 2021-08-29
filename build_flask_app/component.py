@@ -9,11 +9,17 @@ def startProcess():
 			'type': 'input',
 			'name': 'appName',
 			'message': 'What is your application name?',
-	},
+		},
 		{
 			'type': 'confirm',
 			'name': 'isGitInit',
 			'message': 'Do you want to initialize a local git repository?',
+		},
+		{
+			'type': 'list',
+			'name': 'database',
+			'message': 'Which database client you want to use?',
+			'choices': ['MongoDB', 'SQLAlchemy'],
 		}
 	]
 
@@ -22,13 +28,14 @@ def startProcess():
 	# Check for spaces in Application name
 	name = answers['appName'].split(' ')
 	if len(name) > 1: 
-		cprint("No Spaces allowed in application's name !!", 'red', attrs=['bold'])
+		cprint("No Spaces allowed in application's name :/", 'red', attrs=['bold'])
+		cprint("Try again with no spaces :)", 'cyan', attrs=['bold'])
 		return 
 
 
 	readmeFileContent = '''<img src="./images/logo.sample.png" alt="Logo of the project" align="right">
 
-# Name of the project &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
+# Name of the project &middot; ![Python](https://img.shields.io/badge/Language-Python-blue?style=flat&logo=python) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/your/your-project/blob/master/LICENSE)
 > Additional information or tag line
 
 A brief description of your project, what it is used for.
@@ -346,17 +353,37 @@ setup(
 			cprint("Writing {}".format(item), 'cyan', attrs=['bold'])
 
 			filePath = os.path.join(flaskr, item)
-			with open(filePath, 'w') as fp:
-				fp.write('''from flask import Flask
+			if answers['database'].lower() == 'mongodb':
+				with open(filePath, 'w') as fp:
+					fp.write('''from flask import Flask
 from flask_cors import CORS
+from pymongo import MongoClient
 
 app = Flask(__name__)
 CORS(app)
 
-db = 'DB OF YOUR CHOICE'
+# For better understanding, visit: https://pymongo.readthedocs.io/en/stable/tutorial.html
+client = MongoClient('mongodb://localhost:27017/')
+db = client.mydatabase
 
 from .views import *
 ''')
+			elif answers['database'].lower() == 'sqlalchemy':
+				with open(filePath, 'w') as fp:
+					fp.write('''from flask import Flask
+from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+CORS(app)
+
+# For better understanding, visit: https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+db = SQLAlchemy(app)
+
+from .views import *
+''')
+
 		elif item == 'views':
 			cprint("Writing {}".format(item), 'cyan', attrs=['bold'])
 			views = os.path.join(flaskr, item)
@@ -371,21 +398,29 @@ from .demoApi2 import *
 			filePath = os.path.join(views, 'demoApi1.py')
 			with open(filePath, 'w') as fp:
 				fp.write('''from .. import app, db
-            
-@app.route('/demoApi1')
-def demoApi1():
+from flask import jsonify
+
+@app.route('/demoApi1Route')
+def demoApi1Function():
 	print(db)
-	return 'DEMO API 1 IS WORKING !!'
+	return jsonify({
+		'error': False,
+		'message': 'DEMO API 1 IS WORKING !!'
+	})
 ''')
 
 			filePath = os.path.join(views, 'demoApi2.py')
 			with open(filePath, 'w') as fp:
 				fp.write('''from .. import app, db
+from flask import jsonify
 
-@app.route('/demoApi2')
-def demoApi2():
+@app.route('/demoApi2Route')
+def demoApi2Function():
 	print(db)
-	return 'DEMO API 2 IS WORKING !!'
+	return jsonify({
+		'error': False,
+		'message': 'DEMO API 2 IS WORKING !!'
+	})
 ''')
 
 			filePath = os.path.join(views, 'home.py')

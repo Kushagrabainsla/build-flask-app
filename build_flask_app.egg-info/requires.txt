@@ -1,3 +1,7 @@
+Flask
+Flask-SQLAlchemy
+pymongo
+Flask-PyMongo
 PyInquirer
 termcolor
 flask-cors
