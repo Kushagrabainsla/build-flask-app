@@ -353,13 +353,41 @@ setup(
 				if item == 'requirements.txt': fp.write(requirementsFileContent)
 				if item == '.gitignore': fp.write(gitignoreFileContent)
 				if item == 'setup.py': fp.write(setupPyFileContent)
-				if item == 'bootDev.sh': fp.write('''# Development ENV
-# export FLASK_APP={appName}
-# export FLASK_ENV=development
-# flask run
+				if item == 'bootDev.sh': fp.write('''envConstant="unknown"
 
-# Production ENV
-gunicorn --worker-class eventlet -w 1 {appName}:app
+case "$OSTYPE" in
+	solaris* ) envConstant="export";;
+	darwin* ) envConstant="export";;
+	linux* ) envConstant="export";;
+	bsd* ) envConstant="export";;
+	msys* ) envConstant="set";;
+	cygwin* ) envConstant="set";;
+	* ) envConstant="export";;
+esac
+
+if [[ envConstant != "unknown" ]]; then
+	if [[ $1 == 'dev' || $1 == 'development' ]]; then
+		echo 'Development server'
+		if [[ $envConstant == "set" ]]; then
+			set FLASK_APP={appName}
+			set FLASK_ENV="development"
+			flask run
+		elif [[ $envConstant == "export" ]]; then
+			export FLASK_APP={appName}
+			export FLASK_ENV="development"
+			flask run
+		fi
+
+	elif [[ $1 == 'prod' || $1 == 'production' ]]; then
+		echo 'Production server'
+		gunicorn --worker-class eventlet -w 1 {appName}:app
+
+	else
+		echo "Please provide mode of running: ( dev / prod )"
+	fi
+else
+	echo "Unknown OS, please start the server manually."
+fi
 '''.format(appName=answers['appName']))
 				if item == 'Procfile': fp.write('web: gunicorn --worker-class eventlet -w 1 {appName}:app'.format(appName=answers['appName']))
 
