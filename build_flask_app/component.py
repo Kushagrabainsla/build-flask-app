@@ -16,10 +16,15 @@ def startProcess():
 			'message': 'Do you want to initialize a local git repository?',
 		},
 		{
+			'type': 'confirm',
+			'name': 'isSocketRequired',
+			'message': 'Do you want to initialize sockets?',
+		},
+		{
 			'type': 'list',
 			'name': 'database',
 			'message': 'Which database client you want to use?',
-			'choices': ['MongoDB', 'SQLAlchemy'],
+			'choices': ['MongoDB', 'SQLAlchemy', 'None'],
 		}
 	]
 
@@ -28,8 +33,8 @@ def startProcess():
 	# Check for spaces in Application name
 	name = answers['appName'].split(' ')
 	if len(name) > 1: 
-		cprint("No Spaces allowed in application's name :/", 'red', attrs=['bold'])
-		cprint("Try again with no spaces :)", 'cyan', attrs=['bold'])
+		cprint("No Spaces allowed in application's name !", 'red', attrs=['bold'])
+		cprint("Try again with no spaces.", 'cyan', attrs=['bold'])
 		return 
 
 
@@ -298,6 +303,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 '''.format(appName=answers['appName'])
 
+	requirementsFileContent = '''Flask==1.1.2
+pymongo==3.11.4
+Flask-SocketIO==4.3.2
+Flask-Cors==3.0.10
+gunicorn==20.1.0
+eventlet==0.30.2
+gevent==21.1.2
+dnspython==1.16.0
+'''
+
 	setupPyFileContent = '''from setuptools import setup
 
 setup(
@@ -321,7 +336,7 @@ setup(
 
 
 
-	essentials = ['LICENSE', 'README.md', 'requirements.txt', 'gitInit', '.gitignore', 'setup.py']
+	essentials = ['LICENSE', 'README.md', 'requirements.txt', 'gitInit', '.gitignore', 'setup.py', 'Procfile', 'bootDev.sh']
 
 	cprint("Writing essential files ...", 'cyan', attrs=['bold'])
 
@@ -335,9 +350,18 @@ setup(
 			with open(filePath, 'w') as fp:
 				if item == 'LICENSE': fp.write(licenseFileContent)
 				if item == 'README.md': fp.write(readmeFileContent)
-				if item == 'requirements.txt': fp.write('All the requirements for your package')
+				if item == 'requirements.txt': fp.write(requirementsFileContent)
 				if item == '.gitignore': fp.write(gitignoreFileContent)
 				if item == 'setup.py': fp.write(setupPyFileContent)
+				if item == 'bootDev.sh': fp.write('''# Development ENV
+# export FLASK_APP={appName}
+# export FLASK_ENV=development
+# flask run
+
+# Production ENV
+gunicorn --worker-class eventlet -w 1 {appName}:app
+'''.format(appName=answers['appName']))
+				if item == 'Procfile': fp.write('web: gunicorn --worker-class eventlet -w 1 {appName}:app'.format(appName=answers['appName']))
 
 	# Main server Directory
 	flaskr = os.path.join(app, answers['appName'])
@@ -354,8 +378,29 @@ setup(
 
 			filePath = os.path.join(flaskr, item)
 			if answers['database'].lower() == 'mongodb':
-				with open(filePath, 'w') as fp:
-					fp.write('''from flask import Flask
+				if answers['isSocketRequired']:
+					with open(filePath, 'w') as fp:
+						fp.write('''from flask import Flask
+from flask_cors import CORS
+from pymongo import MongoClient
+from flask_socketio import SocketIO
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'
+
+# For better understanding, visit: https://flask-socketio.readthedocs.io/en/latest/
+socket = SocketIO(app, cors_allowed_origins="*")
+CORS(app)
+
+# For better understanding, visit: https://pymongo.readthedocs.io/en/stable/tutorial.html
+client = MongoClient('mongodb://localhost:27017/')
+db = client['YOUR_DATABASE_NAME']
+
+from .views import *
+''')
+				else:
+					with open(filePath, 'w') as fp:
+						fp.write('''from flask import Flask
 from flask_cors import CORS
 from pymongo import MongoClient
 
@@ -364,13 +409,34 @@ CORS(app)
 
 # For better understanding, visit: https://pymongo.readthedocs.io/en/stable/tutorial.html
 client = MongoClient('mongodb://localhost:27017/')
-db = client.mydatabase
+db = client['YOUR_DATABASE_NAME']
 
 from .views import *
 ''')
 			elif answers['database'].lower() == 'sqlalchemy':
-				with open(filePath, 'w') as fp:
-					fp.write('''from flask import Flask
+				if answers['isSocketRequired']:
+					with open(filePath, 'w') as fp:
+						fp.write('''from flask import Flask
+from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+from flask_socketio import SocketIO
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'
+
+# For better understanding, visit: https://flask-socketio.readthedocs.io/en/latest/
+socket = SocketIO(app, cors_allowed_origins="*")
+CORS(app)
+
+# For better understanding, visit: https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+db = SQLAlchemy(app)
+
+from .views import *
+''')				
+				else:
+					with open(filePath, 'w') as fp:
+						fp.write('''from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
@@ -380,6 +446,32 @@ CORS(app)
 # For better understanding, visit: https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
+
+from .views import *
+''')
+			elif answers['database'].lower() == 'none':
+				if answers['isSocketRequired']:
+					with open(filePath, 'w') as fp:
+						fp.write('''from flask import Flask
+from flask_cors import CORS
+from flask_socketio import SocketIO
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'
+
+# For better understanding, visit: https://flask-socketio.readthedocs.io/en/latest/
+socket = SocketIO(app, cors_allowed_origins="*")
+CORS(app)
+
+from .views import *
+''')
+				else:
+					with open(filePath, 'w') as fp:
+						fp.write('''from flask import Flask
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
 
 from .views import *
 ''')
@@ -393,6 +485,7 @@ from .views import *
 				fp.write('''from .home import *
 from .demoApi1 import *
 from .demoApi2 import *
+from .demoSockets import *
 ''')
 
 			filePath = os.path.join(views, 'demoApi1.py')
@@ -425,18 +518,49 @@ def demoApi2Function():
 
 			filePath = os.path.join(views, 'home.py')
 			with open(filePath, 'w') as fp:
-				fp.write('''from .. import app, db
-from flask import render_template
+				fp.write('''from .. import app
+from flask import render_template, jsonify
 
 @app.route('/')
 def home():
-	print(db)
 	return render_template('home.html')
+
+
+@app.route('/info')
+def appInfo():
+	return jsonify({
+		'error': False,
+		'allSystemsWorkingFine': True,
+		'version': '0.0.1',
+		'name': 'YOUR_APP_NAME',
+		'author': 'AUTHOR_NAME',
+		'Description': 'YOUR_APP_DESCRIPTION',
+	})
+
 
 @app.route('/error')
 def error():
 	return render_template('error.html')
 ''')
+			filePath = os.path.join(views, 'demoSockets.py')
+			with open(filePath, 'w') as fp:
+				fp.write('''from .. import app, db, socket
+from flask import jsonify
+
+@app.route('/socket/socketStatus')
+def socketStatus():
+	return jsonify({
+		'error': False,
+		'message': 'Sockets are working fine.'
+	})
+
+# SOCKETS
+@socket.on('connect')
+def on_connect():
+	pass
+
+''')
+
 
 
 		elif item == 'templates':
@@ -509,4 +633,3 @@ def error():
 		with open(filePath, 'w') as fp:
 			service = item[ 4:item.index('.') ]
 			fp.write('# Write you test logic for {service}'.format(service=service))
-
