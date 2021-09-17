@@ -6,11 +6,11 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name='build-flask-app',
-    description='Build Flask App is an excellent open source command-line tool for beginners, which allows you to setup and run modern flask web servers efficiently by running a single command.',
+    description='Set up a modern flask web server by running one command.',
     long_description=README,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    version='0.0.7',
+    version='0.1.0',
     license='MIT',
     author='Kushagra Bainsla',
     author_email='kushagrabainsla@gmail.com',
@@ -18,6 +18,11 @@ setup(
     install_requires=[
         'Flask',
         'Flask-SQLAlchemy',
+        'Flask-SocketIO',
+        'gunicorn',
+        'eventlet',
+        'gevent',
+        'dnspython',
         'pymongo',
         'Flask-PyMongo',
         'PyInquirer',

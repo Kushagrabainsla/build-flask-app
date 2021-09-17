@@ -6,6 +6,6 @@ def main():
         
     for arg in sys.argv:
         if arg == '-v' or arg == '--version':
-            print('Version 0.0.7')
+            print('Version 0.1.0')
 
     

@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
 Name: build-flask-app
-Version: 0.0.7
-Summary: Build Flask App is an excellent open source command-line tool for beginners, which allows you to setup and run modern flask web servers efficiently by running a single command.
+Version: 0.1.0
+Summary: Set up a modern flask web server by running one command.
 Home-page: https://github.com/Kushagrabainsla/build-flask-app
 Author: Kushagra Bainsla
 Author-email: kushagrabainsla@gmail.com
@@ -34,26 +34,24 @@ Description: <img src="https://raw.githubusercontent.com/Kushagrabainsla/build-f
         
         ## Running The Application
         
-        Use **set** instead of **export** while working on windows.
+        * For flask development server.
         
         ```shell
-        cd YOUR_APP_NAME
-        export FLASK_APP=YOUR_APP_NAME
-        export FLASK_ENV=development
-        flask run
+        bash bootDev.sh dev
         ```
         
-        ## Running The Application As Package
+        <br>
         
-        Use **set** instead of **export** while working on windows.
+        * For gunicorn server.
         
         ```shell
-        cd YOUR_APP_NAME
-        export FLASK_APP=YOUR_APP_NAME
-        export FLASK_ENV=development
-        pip install -e .
-        flask run
+        bash bootDev.sh prod
         ```
+        
+        <br>
+        
+        
+        ![Steps](https://raw.githubusercontent.com/Kushagrabainsla/build-flask-app/main/assets/steps.gif)
         
         
 Platform: UNKNOWN

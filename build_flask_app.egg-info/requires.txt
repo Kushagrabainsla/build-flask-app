@@ -1,5 +1,10 @@
 Flask
 Flask-SQLAlchemy
+Flask-SocketIO
+gunicorn
+eventlet
+gevent
+dnspython
 pymongo
 Flask-PyMongo
 PyInquirer
