@@ -398,7 +398,7 @@ fi
 
 
 
-	flaskrItems = ['__init__.py', 'views', 'templates', 'static']
+	flaskrItems = ['__init__.py', 'routes', 'templates', 'static', 'models']
 
 	for item in flaskrItems:
 		if item == '__init__.py':
@@ -424,7 +424,7 @@ CORS(app)
 client = MongoClient('mongodb://localhost:27017/')
 db = client['YOUR_DATABASE_NAME']
 
-from .views import *
+from .routes import *
 ''')
 				else:
 					with open(filePath, 'w') as fp:
@@ -439,7 +439,7 @@ CORS(app)
 client = MongoClient('mongodb://localhost:27017/')
 db = client['YOUR_DATABASE_NAME']
 
-from .views import *
+from .routes import *
 ''')
 			elif answers['database'].lower() == 'sqlalchemy':
 				if answers['isSocketRequired']:
@@ -460,7 +460,7 @@ CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
 
-from .views import *
+from .routes import *
 ''')				
 				else:
 					with open(filePath, 'w') as fp:
@@ -475,7 +475,7 @@ CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
 
-from .views import *
+from .routes import *
 ''')
 			elif answers['database'].lower() == 'none':
 				if answers['isSocketRequired']:
@@ -491,7 +491,7 @@ app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'
 socket = SocketIO(app, cors_allowed_origins="*")
 CORS(app)
 
-from .views import *
+from .routes import *
 ''')
 				else:
 					with open(filePath, 'w') as fp:
@@ -501,14 +501,14 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-from .views import *
+from .routes import *
 ''')
 
-		elif item == 'views':
+		elif item == 'routes':
 			cprint("Writing {}".format(item), 'cyan', attrs=['bold'])
-			views = os.path.join(flaskr, item)
-			os.mkdir(views)
-			filePath = os.path.join(views, '__init__.py')
+			routes = os.path.join(flaskr, item)
+			os.mkdir(routes)
+			filePath = os.path.join(routes, '__init__.py')
 			with open(filePath, 'w') as fp:
 				fp.write('''from .home import *
 from .demoApi1 import *
@@ -516,7 +516,7 @@ from .demoApi2 import *
 from .demoSockets import *
 ''')
 
-			filePath = os.path.join(views, 'demoApi1.py')
+			filePath = os.path.join(routes, 'demoApi1.py')
 			with open(filePath, 'w') as fp:
 				fp.write('''from .. import app, db
 from flask import jsonify
@@ -530,7 +530,7 @@ def demoApi1Function():
 	})
 ''')
 
-			filePath = os.path.join(views, 'demoApi2.py')
+			filePath = os.path.join(routes, 'demoApi2.py')
 			with open(filePath, 'w') as fp:
 				fp.write('''from .. import app, db
 from flask import jsonify
@@ -544,7 +544,7 @@ def demoApi2Function():
 	})
 ''')
 
-			filePath = os.path.join(views, 'home.py')
+			filePath = os.path.join(routes, 'home.py')
 			with open(filePath, 'w') as fp:
 				fp.write('''from .. import app
 from flask import render_template, jsonify
@@ -570,7 +570,7 @@ def appInfo():
 def error():
 	return render_template('error.html')
 ''')
-			filePath = os.path.join(views, 'demoSockets.py')
+			filePath = os.path.join(routes, 'demoSockets.py')
 			with open(filePath, 'w') as fp:
 				fp.write('''from .. import app, db, socket
 from flask import jsonify
@@ -648,6 +648,9 @@ def on_connect():
 	justify-content: center;
 }
 ''')
+		elif item == 'models':
+			models = os.path.join(flaskr, item)
+			os.mkdir(models)
 
 
 	# Server Tests Directory
