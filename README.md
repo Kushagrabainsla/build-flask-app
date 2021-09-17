@@ -25,24 +25,22 @@ build-flask-app
 
 ## Running The Application
 
-Use **set** instead of **export** while working on windows.
+* For flask development server.
 
 ```shell
-cd YOUR_APP_NAME
-export FLASK_APP=YOUR_APP_NAME
-export FLASK_ENV=development
-flask run
+bash bootDev.sh dev
 ```
 
-## Running The Application As Package
+<br>
 
-Use **set** instead of **export** while working on windows.
+* For gunicorn server.
 
 ```shell
-cd YOUR_APP_NAME
-export FLASK_APP=YOUR_APP_NAME
-export FLASK_ENV=development
-pip install -e .
-flask run
+bash bootDev.sh prod
 ```
+
+<br>
+
+
+![Steps](https://raw.githubusercontent.com/Kushagrabainsla/build-flask-app/main/assets/steps.gif)
 
